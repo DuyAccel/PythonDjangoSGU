@@ -91,6 +91,7 @@ def getData(request):
 def cart (request):
     data = {}
     form = deleteCartForm()
+    number_cart = 0
     if request.user.is_authenticated:
         if request.method=='POST':
             form = deleteCartForm(request.POST)
@@ -104,3 +105,4 @@ def cart (request):
         number_cart = len(data)
     return render(request, 'cart-page.html', {'data':data, 'form':form, 'number_cart':number_cart})
 
+ 
