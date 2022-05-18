@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+    <!-- Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Css -->
+    <link rel="stylesheet" href="{% static 'Account/css/sign-up.css' %}">
+    <title>Login SB Mobile</title>
+</head>
+<body>
+    <div class="Account__Register__Container">
+        <div class="Account__Register__Left"></div>
+        <div class="Account__Register__Right">
+           
+            <!-- Alert Success -->
+            <div class="Account__Register__Right__Alert__Success">
+                <div class="Account__Register__Right__Alert__Success__Left">
+                    <div class="Account__Register__Right__Alert__Success__Left__Icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                </div>
+                <div class="Account__Register__Right__Alert__Success__Right">
+                    <div class="Account__Register__Right__Alert__Success__Notify">
+                        Register Successfully!
+                    </div>
+                    <div class="Account__Register__Right__Alert__Success__Text">
+                        Now log in to your account
+                    </div>
+                </div>
+                <div class="Account__Register__Right__Alert__Success__Process__Box">
+                    <div class="Account__Register__Right__Alert__Success__Process"></div>
+                </div>
+            </div>
+            <div class="Account__Register__Right__Loading"><i class="fa-solid fa-spinner"></i></div>
+            <div class="Account__Register__Right__Title__Box">
+                <div class="Account__Register__Right__Title">
+                    Register S Moblie
+                </div>
+                <div class="Account__Register__Right__Login__Text">
+                    Register to continue buying goods
+                </div>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in  messages %}
+                        <li style="color:Tomato;">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <form action="" method="POST" class="Account__Register__Right__Form" id="FormSignUp">
+            {% csrf_token %}
+                <div class="Account__Register__Right__Input__Box">
+                    <div class="Account__Register__Right__Input__Item">
+                        {{form.username}}
+                        <div class="Account__Register__Right__Error Account__Register__Right__Error__Username">
+                        Username contains only letters and numbers, Min length is 5 characters
+                        </div>
+                    </div>
+                    <div class="Account__Register__Right__Input__Item">
+                        {{form.email}}
+                        <div class="Account__Register__Right__Error Account__Register__Right__Error__Email">
+                        Email must contain '@' characters, domain names
+                        </div>
+                    </div>
+                </div>
+                <div class="Account__Register__Right__Input__Box">
+                    <div class="Account__Register__Right__Input__Item">
+                        {{form.password1}}
+                        <div class="Account__Register__Right__Error Account__Register__Right__Error__Password">
+                        The password must contain at least 1 special character, a letter to capitalize, a digit
+                        </div>
+                    </div>
+                    <div class="Account__Register__Right__Input__Item">
+                        {{form.password2}}
+                        <div class="Account__Register__Right__Error Account__Register__Right__Error__CFPassword">
+                        Confirm password must be similar to entered passwords
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="Account__Register__Right__Register__Button" id="SubmitSignUp">Register</button>
+            </form>
+            
+            <div class="Account__Register__Right__Have__Account">
+                Have an account? <a href="{% url 'signin' %}">Login Here</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script src="{% static 'Account/js/sign-up.js' %}"></script>

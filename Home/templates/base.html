@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+    <!-- Swipper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Css -->
+    <link rel="stylesheet" href="{% static 'Home/css/home-page.css' %}">
+    <link rel="stylesheet" href="{% static 'Home/css/details-page.css' %}">
+    <link rel="stylesheet" href="{% static 'Home/css/cart-page.css' %}">
+
+    <title>{% block title %} {% endblock %}</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="Product__Page__Header">
+        <div class="Product__Page__Header__Top">
+            <div class="Product__Page__Header__Top__Logo">
+                <div class="Product__Page__Header__Top__Logo__Group">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                    SMobile
+                </div>
+                <div class="Product__Page__Header__Top__Gift">
+                    <i class="fa-solid fa-gift"></i>
+                </div>
+            </div>
+            <div class="Product__Page__Header__Top__Info__Nav">
+                <div class="Product__Page__Header__Top__Info">
+                    <div class="Product__Page__Header__Top__Info__Email">
+                        <i class="fa-solid fa-envelope"></i>
+                        thanhdai11733621@gmail.com
+                    </div>
+                    <div class="Product__Page__Header__Top__Info__Time">
+                        <i class="fa-solid fa-clock"></i>
+                        08:00 AM To 06:00 PM
+                    </div>
+                </div>
+                <div class="Product__Page__Header__Top__Nav__Group">
+                    <a href="#">Gift Cards</a>
+                    <a href="#">Donate</a>
+                    <a href="#">Stationery Kits</a>
+                    <a href="#">Help Center</a>
+                </div>
+            </div>
+        </div>
+        <div class="Product__Page__Header__Bottom">
+            <div class="Product__Page__Header__Bottom__Logo__Search">
+                <div class="Product__Page__Header__Bottom__Filter__Bar">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div class="Product__Page__Header__Bottom__Logo">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                    SB Mobile
+                </div>
+                <div class="Product__Page__Header__Bottom__Search">
+                    <input type="text" placeholder="Search our catalog...">
+                    <div class="Product__Page__Header__Bottom__Search__Button">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="Product__Page__Header__Bottom__Phone__Cart__Wishlist__Account">
+                <div class="Product__Page__Header__Bottom__Phone">
+                    <a href="#">
+                        <div class="Product__Page__Header__Bottom__Phone__Icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                    </a>
+                    <p>Support 24/7</p>
+                </div>
+                <div class="Product__Page__Header__Bottom__Cart">
+                    <a href="{% url 'home:cart' %}">
+                        <div class="Product__Page__Header__Bottom__Cart__Icon">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <div class="Product__Page__Header__Bottom__Cart__Quantity">
+                                {% if request.user.is_authenticated %}
+                                    {% block cart %}
+                                    {% endblock %}
+                                {% else %}
+                                    0
+                                {% endif %}
+                            </div>
+                        </div>
+                    </a>
+                    <p>Your Cart</p>
+                </div>
+                <div class="Product__Page__Header__Bottom__Wishlist">
+                    <a href="#">
+                        <div class="Product__Page__Header__Bottom__Wishlist__Icon">
+                            <i class="fa-solid fa-heart"></i>
+                            <div class="Product__Page__Header__Bottom__Wishlist__Quantity">
+                                0
+                            </div>
+                        </div>
+                    </a>
+                    <p>Your Wishlist</p>
+                </div>
+                <div class="Product__Page__Header__Bottom__Account">
+                    {% if request.user.is_authenticated %}
+                    <a href="{% url 'signout' %}">
+                        <div class="Product__Page__Header__Bottom__Account__Icon">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                    </a>
+                    <p>Sign Out</p>
+                    {% else %}
+                    <a href="{% url 'signin' %}">
+                        <div class="Product__Page__Header__Bottom__Account__Icon">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                    </a>
+                    <p>Sign In</p>
+                    {% endif %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Body -->
+    {% block body %} {% endblock %}
+
+    <!-- Footer -->
+    <div class="Product__Page__Footer">
+        <div class="Product__Page__Footer__Top">
+            <div class="Product__Page__Footer__Top__Left">
+                <div class="Product__Page__Footer__Top__Left__Logo">
+                    SB Mobile
+                </div>
+                <div class="Product__Page__Footer__Top__Left__Address">
+                    <i class="fa-solid fa-location-dot"></i>Sai Gon University, 273 An Duong Vuong, Ho Chi Minh city
+                </div>
+                <div class="Product__Page__Footer__Top__Left__Email">
+                    <i class="fa-solid fa-envelope"></i>thanhdai11733621@gmail.com
+                </div>
+                <div class="Product__Page__Footer__Top__Left__Phone">
+                    <i class="fa-solid fa-phone"></i>0373874418
+                </div>
+            </div>
+            <div class="Product__Page__Footer__Top__Center">
+                <div class="Product__Page__Footer__Top__Center__Item">
+                    <div class="Product__Page__Footer__Top__Center__Item__Title">
+                        NEED HELP ?
+                    </div>
+                    <div class="Product__Page__Footer__Top__Center__Item__List">
+                        <p><a href="#">My Account</a></p>
+                        <p><a href="#">Order History</a></p>
+                        <p><a href="#">Wishlist</a></p>
+                        <p><a href="#">Newsletter</a></p>
+                        <p><a href="#">Brands</a></p>
+                    </div>
+                </div>
+                <div class="Product__Page__Footer__Top__Center__Item">
+                    <div class="Product__Page__Footer__Top__Center__Item__Title">
+                        ACCOUNT
+                    </div>
+                    <div class="Product__Page__Footer__Top__Center__Item__List">
+                        <p><a href="#">Specials</a></p>
+                        <p><a href="#">Affiliate</a></p>
+                        <p><a href="#">Returns</a></p>
+                        <p><a href="#">Contact Us</a></p>
+                        <p><a href="#">Site Map</a></p>
+                    </div>
+                </div>
+                <div class="Product__Page__Footer__Top__Center__Item">
+                    <div class="Product__Page__Footer__Top__Center__Item__Title">
+                        INFORMATION
+                    </div>
+                    <div class="Product__Page__Footer__Top__Center__Item__List">
+                        <p><a href="#">About Us</a></p>
+                        <p><a href="#">Delivery Information</a></p>
+                        <p><a href="#">Privacy Policy</a></p>
+                        <p><a href="#">Terms & Conditions</a></p>
+                        <p><a href="#"></a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="Product__Page__Footer__Top__Right">
+                <div class="Product__Page__Footer__Top__Right__Title">
+                    NEWSLETTER
+                </div>
+                <div class="Product__Page__Footer__Top__Right__Input">
+                    <input type="text" placeholder="Enter your email...">
+                    <div class="Product__Page__Footer__Top__Right__Subscribe">
+                        <p>SUBSCRIBE</p> 
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </div>
+                </div>
+                <p>Register now to get updates on promotions and coupons.</p>
+            </div>
+        </div>
+        <div class="Product__Page__Footer__Bottom">
+            <div class="Product__Page__Footer__Bottom__Left">
+                <div class="Product__Page__Footer__Bottom__Left__Item">
+                    <img src="{% static 'image/payment1.png' %}" alt="">
+                </div>
+                <div class="Product__Page__Footer__Bottom__Left__Item">
+                    <img src="{% static 'image/payment2.png' %}" alt="">
+                </div>
+                <div class="Product__Page__Footer__Bottom__Left__Item">
+                    <img src="{% static 'image/payment3.png' %}" alt="">
+                </div>
+                <div class="Product__Page__Footer__Bottom__Left__Item">
+                    <img src="{% static 'image/payment4.png' %}" alt="">
+                </div>
+            </div>
+            <div class="Product__Page__Footer__Bottom__Center">
+                © 2020 - Create by Truong Thanh Dai BL
+            </div>
+            <div class="Product__Page__Footer__Bottom__Right">
+                <div class="Product__Page__Footer__Bottom__Right__Item"><i class="fa-brands fa-facebook-f"></i></div>
+                <div class="Product__Page__Footer__Bottom__Right__Item"><i class="fa-brands fa-youtube"></i></div>
+                <div class="Product__Page__Footer__Bottom__Right__Item"><i class="fa-brands fa-twitter"></i></div>
+                <div class="Product__Page__Footer__Bottom__Right__Item"><i class="fa-brands fa-instagram"></i></div>
+                <div class="Product__Page__Footer__Bottom__Right__Item"><i class="fa-brands fa-linkedin-in"></i></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="{% static 'Home/js/home-page.js' %}"></script>
+<script src="{% static 'Home/js/details-page.js' %}"></script>
+<script src="{% static 'Home/js/cart-page.js' %}"></script>

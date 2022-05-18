@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load Home_extras %}
+{% block title %} Details Page {% endblock %}
+{% block cart %}
+    {{number_cart}}
+{% endblock %}
+{% block body %}
+    <div class="main">
+        <div class="content">
+            <div class="content-tittle">
+                <a href="./index.html">
+                    <div class="content-tittle-icon">
+                        <i class='bx bxs-home'></i>
+                    </div>
+                </a>
+                <span>/</span>
+                <h4>Apple iPad Air</h4>
+            </div>
+            <div class="content-details">
+                <div class="content-details-top">
+                    <div class="details-top-left">
+                        <div class="small-img-group">
+                            <div class="details-small-img active">
+                                <img src="{% static product_obj.ProductImage1 %}" alt="" class="small-img" srcset="">
+                            </div>
+                            <div class="details-small-img">
+                                <img src="{% static product_obj.ProductImage2 %}" alt="" class="small-img" srcset="">
+                            </div>
+                            <div class="details-small-img">
+                                <img src="{% static product_obj.ProductImage3 %}" alt="" class="small-img" srcset="">
+                            </div>
+                        </div>
+                        <div class="details-main-img">
+                            <img src="{% static product_obj.ProductImage1 %}" id="main-img" alt="">
+                        </div>
+                    </div>
+                    <div class="details-top-right">
+                        <div class="top-right-tittle">
+                            <h4>{{ product_obj.ProductName }}</h4>
+                        </div>
+                        <div class="top-right-review">
+                            <div class="review-icon">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="top-right-description">
+                            <div class="right-description-items">
+                                <span class="description-items-tittle">Hãng: </span>
+                                <span class="description-items-details">{{ product_obj.ProductBrand }}</span>
+                            </div>
+                            <div class="right-description-items">
+                                <span class="description-items-tittle">Còn lại:</span>
+                                <span class="description-items-details" id="maxQuantity">{{ product_obj.ProductNumber }}</span>
+                            </div>
+                            <div class="right-description-items">
+                                <span class="description-items-tittle">Ram:</span>
+                                <span class="description-items-details">{{ product_obj.ProductRam }} GB</span>
+                            </div>
+                            <div class="right-description-items">
+                                <span class="description-items-tittle">Rom:</span>
+                                <span class="description-items-details">{{ product_obj.ProductRom }} GB</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="top-right-price">
+                            <span class="price-afsale">{{ product_obj.ProductNewPrice }}</span>
+                            <span class="price-bfsale">{{ product_obj.ProductOldPrice }}</span>
+                        </div>
+
+                        <!-- ============================== CART FORM ============================== -->
+                        <form class="top-right-form" method="post">
+                            {% csrf_token %}
+                            <div class="form-quality">
+                                <h6>SL</h6>
+                                <div class="form-qualtity-details">
+                                    <!-- Số lượng -->
+                                    <input type="number" name="amount" value="1" readonly>
+
+                                    <!-- ID Sản Phẩm -->
+                                    <input type="text" name="product" value="{{ Product_ID }}" readonly hidden>
+
+                                    <!-- Username Khách Hàng -->
+                                    <input type="text" name="user" value="{{ UserName }}" readonly hidden>
+
+                                    <div class="form-quantity-btn">
+                                        <button type="button" class="quantity-btn-up">
+                                            <i class="fa-solid fa-arrow-up"></i>
+                                        </button>
+                                        <button type="button" class="quantity-btn-down">
+                                            <i class="fa-solid fa-arrow-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="form-cart" type="submit">
+                                <i class="fa-solid fa-cart-arrow-down"></i>
+                                <span>Thêm Vào Giỏ</span>
+                            </button>
+                            <div class="form-button">
+                                <i class="fa-solid fa-heart"></i>
+                                <span>Danh Sách Yêu Thích</span>
+                            </div>
+                        </form>
+                        <!-- ============================== CART FORM ============================== -->
+
+                    </div>
+                </div>
+                <div class="content-details-bottom">
+                    <div class="content-bottom-tittle">
+                        <span class="bottom-tittle-items bottom-tittle-desc">Chi Tiết Sản Phẩm</span>
+                    </div>
+                    <div class="content-bottom-desciption">
+                        <div class="bottom-description">
+                            <div class="bottom-description--items">
+                                <strong>Revolutionary multi-touch interface.</strong>
+                                <p>iPod touch features the same multi-touch screen technology as iPhone. Pinch to zoom
+                                    in on a photo. Scroll through your songs and videos with a flick. Flip through your
+                                    library by album artwork with Cover Flow.</p>
+                            </div>
+                            <div class="bottom-description--items">
+                                <strong>Gorgeous 3.5-inch widescreen display.</strong>
+                                <p> Watch your movies, TV shows, and photos come alive with bright, vivid color on the
+                                    320-by-480-pixel display.</p>
+                            </div>
+                            <div class="bottom-description--items">
+                                <strong>Music downloads straight from iTunes.</strong>
+                                <p>Shop the iTunes Wi-Fi Music Store from anywhere with Wi-Fi.1 Browse or search to find
+                                    the music youre looking for, preview it, and buy it with just a tap.</p>
+                            </div>
+                            <div class="bottom-description--items">
+                                <strong>Surf the web with Wi-Fi.</strong>
+                                <p>Browse the web using Safari and watch YouTube videos on the first iPod with Wi-Fi
+                                    built in</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Details__Page__Content__2__Title">
+            SẢN PHẨM LIÊN QUAN
+            <div class="SpecialTrend__Swipper__Navigation">
+                <div class="SpecialTrend__Swipper__Prev"><i class="fa-solid fa-arrow-left"></i></div>
+                <div class="SpecialTrend__Swipper__Next"><i class="fa-solid fa-arrow-right"></i></div>
+            </div>
+        </div>
+        <div class="Details__Page__Content__2__SpecialTrend__Slide">
+            <div class="swiper Details__Page__Content__2__SpecialTrend__Swipper">
+                <div class="swiper-wrapper">
+                    {% for product in product_obj_filtered %}
+                    <a href="{% url 'home:details' product.id %}" class="swiper-slide SpecialTrend__Swipper__Slide">
+                        <div class="Details__Page__Content__2__SpecialTrend__Item">
+                            <div class="Details__Page__Content__2__SpecialTrend__Item__Icon__Group">
+                                <div class="Details__Page__Content__2__SpecialTrend__Item__Icon"><i class="fa-solid fa-eye"></i></div>
+                                <div class="Details__Page__Content__2__SpecialTrend__Item__Icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                                <div class="Details__Page__Content__2__SpecialTrend__Item__Icon"><i class="fa-solid fa-heart"></i></div>
+                            </div>
+                            <div class="Details__Page__Content__2__SpecialTrend__Item__Image">
+                                <img class="Product__SpecialTrend__Item__Image__1" src="{% static product.ProductImage1 %}" alt="">
+                                <img class="Product__SpecialTrend__Item__Image__2" src="{% static product.ProductImage2 %}" alt="">
+                            </div>
+                            <div class="Details__Page__Content__2__SpecialTrend__Item__Name">{{ product.ProductName }}</div>
+                            <div class="Details__Page__Content__2__SpecialTrend__Item__Star">
+                                <p>
+                                    {% for value in 0|range:product.ProductStar %}
+                                    <i class="fas fa-star"></i>
+                                    {% endfor %}
+                                </p>
+                            </div>
+                            <div class="Details__Page__Content__2__SpecialTrend__Item__Price__Box">
+                                <div class="Details__Page__Content__2__SpecialTrend__Item__NewPrice">{{ product.ProductNewPrice }}</div>
+                                <div class="Details__Page__Content__2__SpecialTrend__Item__OldPrice">{{ product.ProductOldPrice }}</div>
+                            </div>
+                            <div class="Details__Page__Content__2__SpecialTrend__Item__Time">
+                                <div class="Details__Page__Content__2__SpecialTrend__Item__Time__Icon">
+                                    <i class="fa-solid fa-clock-rotate-left"></i>
+                                </div>
+                                <div class="Details__Page__Content__2__SpecialTrend__Item__Time__Date">
+                                    -32:
+                                </div>
+                                <div class="Details__Page__Content__2__SpecialTrend__Item__Time__Hour">
+                                    -18:
+                                </div>
+                                <div class="Details__Page__Content__2__SpecialTrend__Item__Time__Minute">
+                                    -30:
+                                </div>
+                                <div class="Details__Page__Content__2__SpecialTrend__Item__Time__Second">
+                                    -54
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

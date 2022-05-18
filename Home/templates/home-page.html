@@ -1,0 +1,541 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% load Home_extras %}
+{% block title %} Product Page {% endblock %}
+
+{% block cart %}
+    {{number_cart}}
+{% endblock %}
+
+{% block body %}
+    <div class="BackGround__Body"></div>
+    <div class="Product__Page__Container">
+        <div class="Product__Page__Content">
+            <div class="Product__Page__Content__Left">
+                <div class="Product__Page__Content__Left__SaleOff__Img">
+                    <div class="Product__Page__Content__Left__SaleOff__Img__Info">
+                        <h1>Samsung Galaxy Note 8 </h1>
+                        <p>Sale Off 30%</p>
+                    </div>
+                    <img src="{% static 'image/ddddd.png' %}" alt="">
+                </div>
+
+                <!-- ========================================== FILTER ========================================== -->
+
+                <form class="Product__Page__Content__Left__Filter" action="" method="get">
+                    <div class="Product__Page__Content__Left__Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <div class="Product__Page__Content__Left__Title">PRODUCT FILTER</div>
+                    <div class="Product__Page__Content__Left__Filter__Cate">
+                        <div class="Product__Page__Filter__Title">
+                            Categories
+                        </div>
+                        <div class="Product__Page__Content__Left__Filter__Cate__Item__Box">
+                            <div class="Product__Page__Content__Left__Filter__Cate__Item" value="Samsung">Samsung</div>
+                            <div class="Product__Page__Content__Left__Filter__Cate__Item" value="Apple">Apple</div>
+                            <div class="Product__Page__Content__Left__Filter__Cate__Item" value="Xiaomi">Xiaomi</div>
+                            <div class="Product__Page__Content__Left__Filter__Cate__Item" value="Oppo">Oppo</div>
+                            <div class="Product__Page__Content__Left__Filter__Cate__Item" value="Realmi">Realmi</div>
+                            <input type="text" name="ProductBrand" class="Product__Filter__Input" hidden id="FilterBrand">
+                        </div>
+                    </div>
+                    <div class="Product__Page__Content__Left__Filter__Price">
+                        <div class="Product__Page__Filter__Title">
+                            Price
+                        </div>
+                        <div class="Product__Page__Content__Left__Filter__Price__Item__Box">
+                            <div class="Product__Page__Content__Left__Filter__Price__Input__Number">
+                                <div class="Product__Page__Content__Left__Filter__Price__Input__Number__Min">
+                                    <span>Min</span>
+                                    <input type="number" value="0" class="Filter__Price__Input__Number__Min" name="ProductPriceMin">
+                                </div>
+                                <div class="Product__Page__Content__Left__Filter__Price__Input__Number__Max">
+                                    <span>Max</span>
+                                    <input type="number" value="100000000" class="Filter__Price__Input__Number__Max" name="ProductPriceMax">
+                                </div>
+                            </div>
+                            <div class="Product__Page__Content__Left__Filter__Price__Input__Range">
+                                <div class="Product__Page__Content__Left__Filter__Price__Input__Range__Slide">
+                                    <div class="Product__Page__Content__Left__Filter__Price__Input__Range__Progress">
+                                    </div>
+                                </div>
+                                <div class="Product__Page__Content__Left__Filter__Price__Range__Input">
+                                    <input type="range" class="Filter__Price__Input__Range__Min" min="0" max="100000000"
+                                        step="1000000" value="0">
+                                    <input type="range" class="Filter__Price__Input__Range__Max" min="0" max="100000000"
+                                        step="1000000" value="100000000">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Product__Page__Content__Left__Filter__Ram">
+                        <div class="Product__Page__Filter__Title">
+                            Ram Memory
+                        </div>
+                        <div class="Product__Page__Content__Left__Filter__Ram__Item__Box">
+                            <div class="Product__Page__Content__Left__Filter__Ram__Item" value="2">2 GB</div>
+                            <div class="Product__Page__Content__Left__Filter__Ram__Item" value="4">4 GB</div>
+                            <div class="Product__Page__Content__Left__Filter__Ram__Item" value="6">6 GB</div>
+                            <div class="Product__Page__Content__Left__Filter__Ram__Item" value="8">8 GB</div>
+                            <div class="Product__Page__Content__Left__Filter__Ram__Item" value="12">12 GB</div>
+                            <input type="text" name="ProductRam" class="Product__Filter__Input" hidden id="FilterRam">
+                        </div>
+                    </div>
+                    <div class="Product__Page__Content__Left__Filter__Rom">
+                        <div class="Product__Page__Filter__Title">
+                            Rom Memory
+                        </div>
+                        <div class="Product__Page__Content__Left__Filter__Rom__Item__Box">
+                            <div class="Product__Page__Content__Left__Filter__Rom__Item" value="16">16 GB</div>
+                            <div class="Product__Page__Content__Left__Filter__Rom__Item" value="32">32 GB</div>
+                            <div class="Product__Page__Content__Left__Filter__Rom__Item" value="64">64 GB</div>
+                            <div class="Product__Page__Content__Left__Filter__Rom__Item" value="128">128 GB</div>
+                            <div class="Product__Page__Content__Left__Filter__Rom__Item" value="256">256 GB</div>
+                            <input type="text" name="ProductRom" class="Product__Filter__Input" hidden id="FilterRom">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="Product__Page__Content__Left__Filter__Apply">APPLY</button>
+                </form>
+
+                <!-- ========================================== FILTER ========================================== -->
+
+                <div class="Product__Page__Content__Left__Product__BestSeller">
+                    <div class="Product__Page__Content__Left__Title">BEST SELLER</div>
+                    <div class="Product__Page__Content__Left__Product__BestSeller__Box">
+                        {% for product in product_page_obj2 %}
+                        <a href="{% url 'home:details' product.id %}" class="Product__Page__Content__Left__Product__BestSeller__Item">
+                            <div class="Product__Page__Content__Left__Product__BestSeller__Item__Image">
+                                <img src="{% static product.ProductImage1  %}" alt="">
+                            </div>
+                            <div class="Product__Page__Content__Left__Product__BestSeller__Item__Info">
+                                <div class="Product__Page__Content__Left__Product__BestSeller__Item__Info__Name">
+                                    {{ product.ProductName }}
+                                </div>
+                                <div class="Product__Page__Content__Left__Product__BestSeller__Item__Star">
+                                    <p>
+                                        {% for value in 0|range:product.ProductStar %}
+                                        <i class="fas fa-star"></i>
+                                        {% endfor %}
+                                    </p>
+                                </div>
+                                <div class="Product__Page__Content__Left__Product__BestSeller__Item__Price">
+                                    {{ product.ProductNewPrice }}
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="Product__Page__Content__Left__Services">
+                    <div class="Product__Page__Content__Left__Title">CUSTOMER SERVICES</div>
+                    <div class="Product__Page__Content__Left__Services__Box">
+                        <div class="Product__Page__Content__Left__Services__Item">
+                            <div class="Product__Page__Content__Left__Services__Item__Icon">
+                                <img src="{% static 'image/services1.png' %}" alt="">
+                            </div>
+                            <div class="Product__Page__Content__Left__Services__Item__Info">
+                                <div class="Product__Page__Content__Left__Services__Info__Title">
+                                    SECURE PAYMENT
+                                </div>
+                                <div class="Product__Page__Content__Left__Services__Info__Text">
+                                    Moving Your Card Details to a much more secured place.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Product__Page__Content__Left__Services__Item">
+                            <div class="Product__Page__Content__Left__Services__Item__Icon">
+                                <img src="{% static 'image/services2.png' %}" alt="">
+                            </div>
+                            <div class="Product__Page__Content__Left__Services__Item__Info">
+                                <div class="Product__Page__Content__Left__Services__Info__Title">
+                                    TRUSTPAY
+                                </div>
+                                <div class="Product__Page__Content__Left__Services__Info__Text">
+                                    100% Payment Protection. Easy Return policy.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Product__Page__Content__Left__Services__Item">
+                            <div class="Product__Page__Content__Left__Services__Item__Icon">
+                                <img src="{% static 'image/services3.png' %}" alt="">
+                            </div>
+                            <div class="Product__Page__Content__Left__Services__Item__Info">
+                                <div class="Product__Page__Content__Left__Services__Info__Title">
+                                    SUPPORT 24/7
+                                </div>
+                                <div class="Product__Page__Content__Left__Services__Info__Text">
+                                    Got a question? Look no further.Browse our FAQs or Submit yor query here.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Product__Page__Content__Left__Services__Item">
+                            <div class="Product__Page__Content__Left__Services__Item__Icon">
+                                <img src="{% static 'image/services4.png' %}" alt="">
+                            </div>
+                            <div class="Product__Page__Content__Left__Services__Item__Info">
+                                <div class="Product__Page__Content__Left__Services__Info__Title">
+                                    SHOP ON THE GO
+                                </div>
+                                <div class="Product__Page__Content__Left__Services__Info__Text">
+                                    Download the app and get exciting app only offers at your fingertips.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Product__Page__Content__Right">
+                <div class="Product__Page__Content__Right__Slide">
+                    <div class="swiper Product__Page__Content__Right__Swipper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="{% static 'image/slide.jpg' %}" alt="">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="{% static 'image/slide.jpg' %}" alt="">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="{% static 'image/slide.jpg' %}" alt="">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="{% static 'image/slide.jpg' %}" alt="">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="{% static 'image/slide.jpg' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-button-prev"><i class="fa-solid fa-arrow-left"></i></div>
+                        <div class="swiper-button-next"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="Product__Page__Content__Right__Product">
+                    <div class="Product__Page__Content__Right__Product__Tab">
+                        <div class="Product__Page__Content__Right__Product__Title">WE LOVE TREND</div>
+                        <div class="Product__Page__Content__Right__Product__Item__Box">
+                            <div class="Product__Page__Content__Right__Product__Tab__Item active">Featured</div>
+                            <div class="Product__Page__Content__Right__Product__Tab__Item">New Product</div>
+                            <div class="Product__Page__Content__Right__Product__Tab__Item">Best Seller</div>
+                        </div>
+                    </div>
+                    <div class="Product__Page__Content__Right__Product__Panel">
+
+                        <!-- ====================================== SẢN PHẨM ====================================== -->
+
+                        {% for product in product_page_obj %}
+                        <a href="{% url 'home:details' product.id %}" class="Product__Page__Content__Right__Product__Panel__Item">
+                            <div class="Product__Page__Content__Right__Product__Panel__Item__Icon__Group">
+                                <div class="Product__Page__Content__Right__Product__Panel__Item__Icon">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                                <div class="Product__Page__Content__Right__Product__Panel__Item__Icon">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                                <div class="Product__Page__Content__Right__Product__Panel__Item__Icon">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="Product__Page__Content__Right__Product__Panel__Item__Image">
+                                <img class="Product__Panel__Item__Image__1" src="{% static product.ProductImage1 %}"
+                                    alt="">
+                                <img class="Product__Panel__Item__Image__2" src="{% static product.ProductImage2 %}"
+                                    alt="">
+                            </div>
+                            <div class="Product__Page__Content__Right__Product__Panel__Item__Name">{{ product.ProductName }}</div>
+                            <div class="Product__Page__Content__Right__Product__Panel__Item__Star">
+                                <p>
+                                    {% for value in 0|range:product.ProductStar %}
+                                    <i class="fas fa-star"></i>
+                                    {% endfor %}
+                                </p>
+                            </div>
+                            <div class="Product__Page__Content__Right__Product__Panel__Item__Price">
+                                <div class="Product__Page__Content__Right__Product__Panel__Item__New__Price">{{ product.ProductNewPrice }}</div>
+                                <div class="Product__Page__Content__Right__Product__Panel__Item__Old__Price">{{ product.ProductOldPrice }}</div>
+                            </div>
+                            <div class="Product__Page__Content__Right__Product__Panel__Item__Time">
+                                <div class="Product__Page__Content__Right__Product__Panel__Item__Time__Icon">
+                                    <i class="fa-solid fa-clock-rotate-left"></i>
+                                </div>
+                                <div class="Product__Page__Content__Right__Product__Panel__Item__Time__Date">
+                                    -32:
+                                </div>
+                                <div class="Product__Page__Content__Right__Product__Panel__Item__Time__Hour">
+                                    -18:
+                                </div>
+                                <div class="Product__Page__Content__Right__Product__Panel__Item__Time__Minute">
+                                    -30:
+                                </div>
+                                <div class="Product__Page__Content__Right__Product__Panel__Item__Time__Second">
+                                    -54
+                                </div>
+                            </div>
+                        </a>
+
+                        {% endfor %}
+                        <!-- ====================================== SẢN PHẨM ====================================== -->
+
+                    </div>
+
+                     <!-- ====================================== PHÂN TRANG ====================================== -->
+
+                    <div class="Product__Page__Content__Right__Product__Paging">
+                        {% if product_page_obj.has_previous %}
+                        <a href="{% my_url product_page_obj.previous_page_number 'page' request.GET.urlencode %}" 
+                           class="Product__Page__Content__Right__Product__Paging__Item">
+                           <i class="fa-solid fa-arrow-left"></i>
+                        </a>
+                        {% endif %}
+                        <a href="{% my_url product_page_obj.number 'page' request.GET.urlencode %}" 
+                           class="Product__Page__Content__Right__Product__Paging__Item active">
+                           Page {{product_page_obj.number}} of {{product_page_obj.paginator.num_pages}}
+                        </a>
+                        {% if product_page_obj.has_next %}
+                        <a href="{% my_url product_page_obj.next_page_number 'page' request.GET.urlencode %}" 
+                           class="Product__Page__Content__Right__Product__Paging__Item">
+                           <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+
+                     <!-- ====================================== PHÂN TRANG ====================================== -->
+                </div>
+
+            </div>
+        </div>
+
+        <div class="Product__Page__Content__2">
+            <div class="Product__Page__Content__2__Title">
+                SPECIAL TREND
+                <div class="SpecialTrend__Swipper__Navigation">
+                    <div class="SpecialTrend__Swipper__Prev"><i class="fa-solid fa-arrow-left"></i></div>
+                    <div class="SpecialTrend__Swipper__Next"><i class="fa-solid fa-arrow-right"></i></div>
+                </div>
+            </div>
+            <div class="Product__Page__Content__2__SpecialTrend">
+                <div class="Product__Page__Content__2__SpecialTrend__Image">
+                    <img src="{% static 'image/Special_Trend_Banner-265x384.jpg' %}" alt="">
+                </div>
+                <div class="Product__Page__Content__2__SpecialTrend__Slide">
+                    <div class="swiper Product__Page__Content__2__SpecialTrend__Swipper">
+                        <div class="swiper-wrapper">
+                            <!-- ====================================== SẢN PHẨM ====================================== -->
+                            {% for product in product_page_obj %}
+                            <a href="{% url 'home:details' product.id %}" class="swiper-slide SpecialTrend__Swipper__Slide">
+                                <div class="Product__Page__Content__2__SpecialTrend__Item">
+                                    <div class="Product__Page__Content__2__SpecialTrend__Item__Icon__Group">
+                                        <div class="Product__Page__Content__2__SpecialTrend__Item__Icon"><i
+                                                class="fa-solid fa-eye"></i></div>
+                                        <div class="Product__Page__Content__2__SpecialTrend__Item__Icon"><i
+                                                class="fa-solid fa-cart-shopping"></i></div>
+                                        <div class="Product__Page__Content__2__SpecialTrend__Item__Icon"><i
+                                                class="fa-solid fa-heart"></i></div>
+                                    </div>
+                                    <div class="Product__Page__Content__2__SpecialTrend__Item__Image">
+                                        <img class="Product__SpecialTrend__Item__Image__1"
+                                            src="{% static product.ProductImage1 %}" alt="">
+                                        <img class="Product__SpecialTrend__Item__Image__2"
+                                            src="{% static product.ProductImage2 %}" alt="">
+                                    </div>
+                                    <div class="Product__Page__Content__2__SpecialTrend__Item__Name">{{ product.ProductName }}</div>
+                                    <div class="Product__Page__Content__2__SpecialTrend__Item__Star">
+                                        <p>
+                                            {% for value in 0|range:product.ProductStar %}
+                                            <i class="fas fa-star"></i>
+                                            {% endfor %}
+                                        </p>
+                                    </div>
+                                    <div class="Product__Page__Content__2__SpecialTrend__Item__Price__Box">
+                                        <div class="Product__Page__Content__2__SpecialTrend__Item__NewPrice">{{ product.ProductNewPrice }}</div>
+                                        <div class="Product__Page__Content__2__SpecialTrend__Item__OldPrice">{{ product.ProductOldPrice }}</div>
+                                    </div>
+                                    <div class="Product__Page__Content__2__SpecialTrend__Item__Time">
+                                        <div class="Product__Page__Content__2__SpecialTrend__Item__Time__Icon">
+                                            <i class="fa-solid fa-clock-rotate-left"></i>
+                                        </div>
+                                        <div class="Product__Page__Content__2__SpecialTrend__Item__Time__Date">
+                                            -32:
+                                        </div>
+                                        <div class="Product__Page__Content__2__SpecialTrend__Item__Time__Hour">
+                                            -18:
+                                        </div>
+                                        <div class="Product__Page__Content__2__SpecialTrend__Item__Time__Minute">
+                                            -30:
+                                        </div>
+                                        <div class="Product__Page__Content__2__SpecialTrend__Item__Time__Second">
+                                            -54
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            {% endfor %}
+                            <!-- ====================================== SẢN PHẨM ====================================== -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="Product__Page__Content__2__ShopNow">
+                {% for product in product_page_obj3 %}
+                <div class="Product__Page__Content__2__ShopNow__Item">
+                    <div class="Product__Page__Content__2__ShopNow__Item__Left">
+                        <div class="Product__Page__Content__2__ShopNow__Item__Title">
+                            {{ product.ProductName }}
+                        </div>
+                        <div class="Product__Page__Content__2__ShopNow__Item__Sale__Text">
+                            Upto 30% Off
+                        </div>
+                        <a href="{% url 'home:details' product.id %}" class="Product__Page__Content__2__ShopNow__Item__Button">
+                            Show Now
+                        </a>
+                    </div>
+                    <div class="Product__Page__Content__2__ShopNow__Item__Right">
+                        <img src="{% static product.ProductImage1 %}" alt="">
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="Product__Page__Content__2__Image__SaleOff">
+                <div class="Product__Page__Content__2__Image__SaleOff__Left">
+                    <img src="{% static 'image/aaaaa.png' %}" alt="">
+                </div>
+                <div class="Product__Page__Content__2__Image__SaleOff__Right">
+                    <div class="Product__Page__Content__2__Image__SaleOff__Title">
+                        Best-selling Samsung
+                    </div>
+                    <div class="Product__Page__Content__2__Image__SaleOff__Line"></div>
+                    <div class="Product__Page__Content__2__Image__SaleOff__Price">
+                        From $12.990
+                    </div>
+                    <div class="Product__Page__Content__2__Image__SaleOff__UptoPrice">
+                        Up to $30.000 Off*
+                    </div>
+                </div>
+            </div>
+
+            <div class="Product__Page__Content__2__Services">
+                <div class="Product__Page__Content__2__Title">CUSTOMER SERVICES</div>
+                <div class="Product__Page__Content__2__Services__Box">
+                    <div class="Product__Page__Content__2__Services__Item">
+                        <div class="Product__Page__Content__2__Services__Item__Icon">
+                            <img src="{% static 'image/services1.png' %}" alt="">
+                        </div>
+                        <div class="Product__Page__Content__2__Services__Item__Info">
+                            <div class="Product__Page__Content__2__Services__Info__Title">
+                                SECURE PAYMENT
+                            </div>
+                            <div class="Product__Page__Content__2__Services__Info__Text">
+                                Moving Your Card Details to a much more secured place.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Product__Page__Content__2__Services__Item">
+                        <div class="Product__Page__Content__2__Services__Item__Icon">
+                            <img src="{% static 'image/services2.png' %}" alt="">
+                        </div>
+                        <div class="Product__Page__Content__2__Services__Item__Info">
+                            <div class="Product__Page__Content__2__Services__Info__Title">
+                                TRUSTPAY
+                            </div>
+                            <div class="Product__Page__Content__2__Services__Info__Text">
+                                100% Payment Protection. Easy Return policy.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Product__Page__Content__2__Services__Item">
+                        <div class="Product__Page__Content__2__Services__Item__Icon">
+                            <img src="{% static 'image/services3.png' %}" alt="">
+                        </div>
+                        <div class="Product__Page__Content__2__Services__Item__Info">
+                            <div class="Product__Page__Content__2__Services__Info__Title">
+                                SUPPORT 24/7
+                            </div>
+                            <div class="Product__Page__Content__2__Services__Info__Text">
+                                Got a question? Look no further.Browse our FAQs or Submit yor query here.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Product__Page__Content__2__Services__Item">
+                        <div class="Product__Page__Content__2__Services__Item__Icon">
+                            <img src="{% static 'image/services4.png' %}" alt="">
+                        </div>
+                        <div class="Product__Page__Content__2__Services__Item__Info">
+                            <div class="Product__Page__Content__2__Services__Info__Title">
+                                SHOP ON THE GO
+                            </div>
+                            <div class="Product__Page__Content__2__Services__Info__Text">
+                                Download the app and get exciting app only offers at your fingertips.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="Product__Page__Content__2__Image__Our__Cate">
+                <div class="Product__Page__Content__2__Title">
+                    CATEGORY
+                </div>
+                <div class="Product__Page__Content__2__Image__Our__Cate__Box">
+                    <div class="Product__Page__Content__2__Image__Our__Cate__Item">
+                        <div class="Product__Page__Content__2__Image__Our__Cate__Item__Icon">
+                            <img src="{% static 'image/logo-samsung.png' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="Product__Page__Content__2__Image__Our__Cate__Item">
+                        <div class="Product__Page__Content__2__Image__Our__Cate__Item__Icon">
+                            <img src="{% static 'image/logo-apple.png' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="Product__Page__Content__2__Image__Our__Cate__Item">
+                        <div class="Product__Page__Content__2__Image__Our__Cate__Item__Icon">
+                            <img src="{% static 'image/logo-xiaomi.png' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="Product__Page__Content__2__Image__Our__Cate__Item">
+                        <div class="Product__Page__Content__2__Image__Our__Cate__Item__Icon">
+                            <img src="{% static 'image/logo-oppo.png' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="Product__Page__Content__2__Image__Our__Cate__Item">
+                        <div class="Product__Page__Content__2__Image__Our__Cate__Item__Icon">
+                            <img src="{% static 'image/logo-vivo.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="Product__Page__Content__2__Image__SaleOff__2">
+                <div class="Product__Page__Content__2__Image__SaleOff__2__Left">
+                    <div class="Product__Page__Content__2__Image__SaleOff__2__Left__1">
+                        <div class="Product__Page__Content__2__Image__SaleOff__2__Left__Title">
+                            Samsung Galaxy S21
+                        </div>
+                        <div class="Product__Page__Content__2__Image__SaleOff__2__Left__Text">
+                            World's First 5G-upgradable
+                        </div>
+                        <div class="Product__Page__Content__2__Image__SaleOff__2__Left__ShowNow">
+                            Show Now
+                        </div>
+                    </div>
+                    <div class="Product__Page__Content__2__Image__SaleOff__2__Left__2">
+                        <img src="{% static 'image/ccccc.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="Product__Page__Content__2__Image__SaleOff__2__Right">
+                    <div class="Product__Page__Content__2__Image__SaleOff__2__Right__Title__Text">
+                        <div class="Product__Page__Content__2__Image__SaleOff__2__Right__Title">Subtitle</div>
+                        <div class="Product__Page__Content__2__Image__SaleOff__2__Right__Text">Wireless. Effortless.
+                            Magical.</div>
+                    </div>
+                    <img src="{% static 'image/bbbbb.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

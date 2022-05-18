@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+    <!-- Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Css -->
+    <link rel="stylesheet" href="{% static 'Account/css/sign-in.css' %}">
+    <title>Login SB Mobile</title>
+</head>
+<body>
+    <div class="Account__Login__Container">
+        <div class="Account__Login__Left"></div>
+        <div class="Account__Login__Right">
+            <!-- Alert Failed -->
+            <div class="Account__Login__Right__Alert__Failed">
+                <div class="Account__Login__Right__Alert__Failed__Left">
+                    <div class="Account__Login__Right__Alert__Failed__Left__Icon">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </div>
+                </div>
+                <div class="Account__Login__Right__Alert__Failed__Right">
+                    <div class="Account__Login__Right__Alert__Failed__Notify">
+                        Login Failed!
+                    </div>
+                    <div class="Account__Login__Right__Alert__Failed__Text">
+                        Username or password incorrect
+                    </div>
+                </div>
+                <div class="Account__Login__Right__Alert__Failed__Process__Box">
+                    <div class="Account__Login__Right__Alert__Failed__Process"></div>
+                </div>
+            </div>
+            <!-- Alert Success -->
+            <div class="Account__Login__Right__Alert__Success">
+                <div class="Account__Login__Right__Alert__Success__Left">
+                    <div class="Account__Login__Right__Alert__Success__Left__Icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                </div>
+                <div class="Account__Login__Right__Alert__Success__Right">
+                    <div class="Account__Login__Right__Alert__Success__Notify">
+                        Login Successfully!
+                    </div>
+                    <div class="Account__Login__Right__Alert__Success__Text">
+                        Now you can buy goods at SB Mobile
+                    </div>
+                </div>
+                <div class="Account__Login__Right__Alert__Success__Process__Box">
+                    <div class="Account__Login__Right__Alert__Success__Process"></div>
+                </div>
+            </div>
+            <div class="Account__Login__Right__Loading"><i class="fa-solid fa-spinner"></i></div>
+            <div class="Account__Login__Right__Title__Box">
+                <div class="Account__Login__Right__Title">
+                    Welcome to S Moblie
+                    
+                </div>
+                <div class="Account__Login__Right__Login__Text">
+                Log in to continue buying goods
+                </div>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in  messages %}
+                        <li style="color:Tomato;">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <form action="" method="POST" class="Account__Login__Right__Form">
+                {% csrf_token %}
+                <div class="Account__Login__Right__Input__Box">
+                    <div class="Account__Login__Right__Input__Item">
+                        <label for="">Username</label>
+                        <input type="text" name="username" id="" placeholder="Enter your username...">
+                    </div>
+                    <div class="Account__Login__Right__Input__Item">
+                        <label for="">Password</label>
+                        <input type="password" name="password" id="" placeholder="Enter your password...">
+                    </div>
+                </div>
+                <div class="Account__Login__Right__Remember__Box">
+                    <div class="Account__Login__Right__Remember__Box__Left">
+                        <label for="RememberCheck"><i class="fa-solid fa-check"></i></label>
+                        <span>Remember me</span>
+                        <input type="checkbox" id="RememberCheck">
+                    </div>
+                    <div class="Account__Login__Right__Remember__Box__Right">
+                        <a href="#">Forgot your password?</a>
+                    </div>
+                </div>
+                <button type="submit" class="Account__Login__Right__Login__Button">Login</button>
+            </form>
+            <div class="Account__Login__Right__Login__Or">
+                <span>OR</span>
+            </div>
+            <div class="Account__Login__Right__Have__Account">
+                Dont't have an account? <a href="{% url 'signup' %}">Register Here</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script src="{% static 'Account/js/sign-in.js' %}"></script>
